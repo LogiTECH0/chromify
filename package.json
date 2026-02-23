@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -r origin"
+    "deploy": "gh-pages -d dist --branch gh-pages --repo https://github.com/logitech0/chromify.git"
   },
   "dependencies": {
     "react": "^19.2.0",
