@@ -53,7 +53,7 @@ export function Paint({ color, tool, setTool }: PaintProps) {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    
+
     const last = undoStack.current[undoStack.current.length - 1];
     if (!last || !imageDataEquals(last, imageData)) {
       if (undoStack.current.length >= MAX_HISTORY) undoStack.current.shift();
@@ -104,6 +104,10 @@ export function Paint({ color, tool, setTool }: PaintProps) {
     canvas.width = Math.round(displayWidth * dpr);
     canvas.height = Math.round(displayHeight * dpr);
 
+    ctx.scale(dpr, dpr);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.imageSmoothingEnabled = true;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
